@@ -34,8 +34,34 @@ const notFound = (request, response) => {
     message: 'The page you are looking for was not found.',
     id: 'notFound',
   };
-
+  respondJSON(request, response, 404, responseJSON);
 };
+
+const unauthorized = (request, response, params) => {
+  if(params.loggedIn === "yes"){
+    responseJSON = {
+      messsage: 'You have access',
+      id: 'unauthorized',
+    }
+    respondJSON(request, response, 200, responseJSON);
+  }
+  else{
+    const responseJSON = {
+      message: 'The page you are looking for was not found.',
+      id: 'unauthorized',
+    };
+    respondJSON(request, response, 401, responseJSON);
+  }
+  
+}
+
+const forbidden = (request, response) =>{
+  const responseJSON = {
+    message: '403 Forbidden',
+    id: 'forbidden',
+  };
+  respondJSON(request, response, 403, responseJSON);
+}
 
 module.exports = {
   success,
