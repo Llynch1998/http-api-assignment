@@ -1,0 +1,25 @@
+{
+  "name": "http-api-assignment",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "eslint-config-airbnb": "^18.0.1",
+    "eslint": "^6.4.0",
+    "eslint-plugin-import": "^2.18.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Llynch1998/http-api-assignment.git"
+  },
+  "author": "Wyatt",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/Llynch1998/http-api-assignment/issues"
+  },
+  "homepage": "https://github.com/Llynch1998/http-api-assignment#readme"
+}
