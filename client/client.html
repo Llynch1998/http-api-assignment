@@ -7,6 +7,29 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
   <script type="text/babel">
 
+    const handleResponse = (xhr) =>{
+      console.dir(xhr.response)
+    }
+
+    const sendAjax = (url,type) =>{
+      const xhr = new XMLHttpRequest();//ajax is asyncronous javascript and xml
+      console.dir(`Making a Get request to ${url} for ${type}`);
+      xhr.open('GET', url);//starts request
+      xhr.setRequestHeader("Accept", type);//sets header to get what is requested
+      xhr.onload = () => handleResponse(xhr);//makes it so when its loaded, it will handle the info
+      xhr.send();
+    }
+    const init = () =>{
+      const sendButton = document.querySelector('#send');
+      const makeRequest = () =>{
+        const urlFromDropdown = document.querySelector('#page').value;
+        const typeFromDropdown = document.querySelector('#type').value;
+
+        sendAjax(urlFromDropdown, typeFromDropdown);
+      }
+      sendButton.addEventListener('click', makeRequest);
+    }
+    window.onload = init;
   </script>
 </head>
 <body>

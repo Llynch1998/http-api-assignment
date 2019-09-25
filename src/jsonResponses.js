@@ -1,31 +1,33 @@
-    
-const respondJSON = (request, response, status, object) => {
-  response.writeHead(status, { 'Content-Type': 'application/json' });
-  response.write(JSON.stringify(object));
-  response.end();
-};
 
-const success = (request, response) => {
+const respond = (request,response,status,data,type) =>{
+  response.writeHead(status, {'Content-Type':type});
+  response.write(data);
+  response.end();
+}
+
+const success = (request, response, type) => {
+  if(type === 'text/xml'){
+    let responseXML = '<response>';
+    responseXML += '<message>This is a successful response.</message>';
+    responseXML += '</response>';
+    //send back xml
+    //return
+    return respond(request, response, 200, responseXML, 'text/xml')
+  }
+  //send back json
   const responseJSON = {
     message: 'This is a successful response',
   };
+  let stringifiedJSON = JSON.stringify(responseJSON)
 
-  respondJSON(request, response, 200, responseJSON);
+  return respond(request, response, 200, responseJSON, 'application/JSON');
 };
 
-const badRequest = (request, response, params) => {
-  if(params.valid === true){
-    const responseJSON = {
-      message: 'This request has the required parameters',
-    };
-    respondJSON(request, response, 200, responseJSON);
+const badRequest = (request, response, type, params) => {
+  if(!params.valid || params.valid !== true){
+    //send a 400
   }
-  else{
-    const responseJSON = {
-      message: 'This request does not have the required parameters',
-    };
-    respondJSON(request, response, 400, responseJSON);
-  }
+  //send back a 200 in either xml or json
   
 };
 
